@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: telegram-link-earn-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_IDS
+        sync: false
+      - key: ADMIN_CHANNEL_ID
+        sync: false
+      - key: WITHDRAW_GROUP_ID
+        sync: false
+      - key: WEB_BASE_URL
+        sync: false
+      - key: WEB_ADMIN_SECRET
+        sync: false
