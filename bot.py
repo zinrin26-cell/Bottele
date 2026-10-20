@@ -301,15 +301,29 @@ def claim_post(key):
 
 if __name__ == "__main__":
     if not BOT_TOKEN:
-        raise SystemExit("Thiếu BOT_TOKEN trong biến môi trường.")
-    threading.Thread(target=lambda: app_web.run(host="0.0.0.0", port=PORT, debug=False, use_reloader=False), daemon=True).start()
+        raise SystemExit("Thieu BOT_TOKEN trong bien moi truong.")
+
+    import threading
+
+    threading.Thread(
+        target=lambda: app_web.run(
+            host="0.0.0.0",
+            port=PORT,
+            use_reloader=False
+        ),
+        daemon=True
+    ).start()
+
     application = Application.builder().token(BOT_TOKEN).build()
+
     application.add_handler(CommandHandler("start", start))
-    application.add_handler(CommandHandler("key", key_command))
-    application.add_handler(CommandHandler("addlink", addlink))
-    for cmd in ["links", "withdrawals", "stats", "credit"]:
-        application.add_handler(CommandHandler(cmd, admin_cmd))
-    application.add_handler(CallbackQueryHandler(menu))
-    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_message))
-    print(f"Bot started; key website listening on port {PORT}")
-    application.run_polling(allowed_updates=Update.ALL_TYPES)
+    application.add_handler(CommandHandler("help", help_command))
+
+    for cmd in ["links", "withdrawals", "stats"]:
+        application.add_handler(CommandHandler(cmd, handle_command))
+
+    application.add_handler(CallbackQueryHandler(button_callback))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+
+    print("Bot started")
+    application.run_polling()
