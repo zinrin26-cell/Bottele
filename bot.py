@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify, render_template_string
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters
 
-BOT_TOKEN = os.getenv("8717574767:AAHicQcRqa6ZK3ESyXJN6ZGTh6BKtzm7a88", "").strip()
+BOT_TOKEN = os.getenv("BOT_TOKEN", "").strip()
 ADMIN_IDS = {int(x.strip()) for x in os.getenv("8363651531", "").split(",") if x.strip().isdigit()}
 ADMIN_CHANNEL_ID = os.getenv("8363651531", "").strip()
 WITHDRAW_GROUP_ID = os.getenv("WITHDRAW_GROUP_ID", "").strip()
