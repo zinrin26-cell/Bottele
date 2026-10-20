@@ -7,8 +7,7 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Mess
 BOT_TOKEN = os.getenv("8717574767:AAHicQcRqa6ZK3ESyXJN6ZGTh6BKtzm7a88", "").strip()
 ADMIN_IDS = {int(x.strip()) for x in os.getenv("8363651531", "").split(",") if x.strip().isdigit()}
 ADMIN_CHANNEL_ID = os.getenv("8363651531", "").strip()
-WITHDRAW_GROUP_ID = os.getenv("-5419646881
-", "").strip()
+WITHDRAW_GROUP_ID = os.getenv("WITHDRAW_GROUP_ID", "").strip()
 WEB_BASE_URL = os.getenv("WEB_BASE_URL", "http://localhost:9898").rstrip("/")
 WEB_ADMIN_SECRET = os.getenv("WEB_ADMIN_SECRET", "change-this-secret")
 DB_PATH = os.getenv("DB_PATH", "bot.db")
